@@ -1,6 +1,9 @@
 package com.gary.reversi;
 
 import com.gary.reversi.engine.ReversiBoardImpl;
+import com.gary.reversi.engine.ReversiGame;
+import com.gary.reversi.engine.ReversiGameImpl;
+import com.rd.game.common.Player;
 import org.junit.Test;
 
 /**
@@ -16,5 +19,12 @@ public class TestBoardImpl {
     public void testBasicBoard() throws Exception {
         ReversiBoardImpl board = new ReversiBoardImpl(8);
         System.out.println(board.toString());
+    }
+
+    @Test
+    public void testBasicMove() throws Exception {
+        ReversiGame game = new ReversiGameImpl();
+        game.applyMove(Player.PLAYER_ONE, 4, 2);
+        game.printBoard();
     }
 }

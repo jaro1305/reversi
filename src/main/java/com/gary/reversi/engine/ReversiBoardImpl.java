@@ -50,6 +50,18 @@ public class ReversiBoardImpl implements ReversiBoard {
         return board[position.getX()][position.getY()];
     }
 
+    public com.rd.game.common.Player getPiece(int x, int y) {
+        return board[x][y];
+    }
+
+    public void setPiece(int x, int y, Player player) {
+        board[x][y] = player;
+    }
+
+    public void setPiece(Position position, Player player) {
+        board[position.getX()][position.getY()] = player;
+    }
+
     @Override
     public ReversiBoard copy() {
         return new ReversiBoardImpl(board);
@@ -58,8 +70,9 @@ public class ReversiBoardImpl implements ReversiBoard {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        for (int x = 0; x < size; x++)  {
-            for (int y = 0; y < size; y++) {
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++)  {
+
                 if (board[x][y] == null) {
                     builder.append("-");
                 } else if (board[x][y] == Player.PLAYER_ONE) {
@@ -67,7 +80,7 @@ public class ReversiBoardImpl implements ReversiBoard {
                 } else if (board[x][y] == Player.PLAYER_TWO) {
                     builder.append("X");
                 }
-                if (y < size - 1) {
+                if (x < size - 1) {
                     builder.append(" ");
                 }
             }
