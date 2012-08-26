@@ -11,11 +11,10 @@ import com.rd.reversi.client.ReversiBoard;
  * Time: 22:30
  * To change this template use File | Settings | File Templates.
  */
-public interface ReversiGame {
+public interface ReversiRules {
 
 
-    void applyMove(Player player, int x, int y);
-    void applyMove(Player player, Position position);
+    void applyMove(ReversiBoardImpl board, Player player, int x, int y);
+    void applyMove(ReversiBoardImpl board, Player player, Position position);
 
-    void printBoard();
 }
