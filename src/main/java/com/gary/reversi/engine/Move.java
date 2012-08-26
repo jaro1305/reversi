@@ -19,4 +19,9 @@ public class Move {
         this.y = y;
         this.player = player;
     }
+
+    @Override
+    public String toString() {
+        return String.format("(%s: %d, %d)", player, x, y);
+    }
 }

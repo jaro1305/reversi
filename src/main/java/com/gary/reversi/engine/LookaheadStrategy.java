@@ -27,7 +27,11 @@ public class LookaheadStrategy {
     public void foo() {
         ReversiBoard board = new ReversiBoardImpl(8);
         Player player = Player.PLAYER_ONE;
-        bar(board, player, 4, new ArrayList<Move>());
+        MoveValuation bestScore = bar(board, player, 4, new ArrayList<Move>());
+        System.out.println("--------------------------------------------");
+        System.out.println("--------------------------------------------");
+        System.out.println("--------------------------------------------");
+        System.out.println(bestScore.one + ", " + bestScore.two);
     }
 
     private void postLeaf(ReversiBoard board, List<Move> moveHistory) {
@@ -39,25 +43,39 @@ public class LookaheadStrategy {
         }
     }
 
-    private void bar(ReversiBoard board, Player player, int level, List<Move> history) {
+    static class MoveValuation extends Pair<Integer, List<Move>> {
+        public MoveValuation(Integer one, List<Move> two) {
+            super(one, two);
+        }
+    }
+
+    private MoveValuation bar(ReversiBoard board, Player player, int level, List<Move> history) {
         List<Position> possibleMoves = ReversiBoardUtils.getValidMoves(board, player);
         if (level < 0 || possibleMoves.isEmpty()) {
             System.out.printf("leaf found\n");
             postLeaf(board, history);
-            return;
+            return new MoveValuation(scorer.score(board, player), history);
         }
+
         System.out.printf("----------------------------\n");
-        System.out.printf("inspecting board for player %s", player);
+        System.out.printf("inspecting board for player %s\n", player);
+
+        MoveValuation bestScore = new MoveValuation(Integer.MIN_VALUE, new ArrayList<Move>());
 
         for (Position position : possibleMoves) {
             ReversiBoardImpl boardCopy = (ReversiBoardImpl)board.copy();
             List<Move> historyCopy = new ArrayList<Move>(history);
             historyCopy.add(new Move(position.getX(), position.getY(), player));
             rules.applyMove(boardCopy, player, position);
-            System.out.printf("possible move : %d, %d\n%s\n", position.getX(), position.getY(), boardCopy);
-            bar(boardCopy, Utils.getOpponent(player), level - 1, historyCopy);
-        }
-    }
 
+            MoveValuation moveScore = bar(boardCopy, Utils.getOpponent(player), level - 1, historyCopy);
+            System.out.printf("checking move : %d, %d\n%s\n", position.getX(), position.getY(), boardCopy);
+            moveScore.one *= -1;
+            if (moveScore.one > bestScore.one) {
+                bestScore = moveScore;
+            }
+        }
+        return bestScore;
+    }
 
 }

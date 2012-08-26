@@ -16,10 +16,14 @@ import static com.gary.reversi.engine.Utils.getPiece;
 public class BoardScorer {
     float[] weights = new float[]{1, -1, 1, -1, 1, -1, 1, -1};
 
+    public void initGreedyWeights() {
+        weights = new float[]{1, 0, 0, 0, 0, 0, 0, 0};
+    }
+
     public int score(ReversiBoard board, Player player) {
         Player opponent = Utils.getOpponent(player);
 
-        return (int) (countStones(board, player) * weights[0] +
+        int result = (int)(countStones(board, player) * weights[0] +
                 countStones(board, opponent) * weights[1] +
                 countEdgeStones(board, player) * weights[2] +
                 countEdgeStones(board, opponent) * weights[3] +
@@ -27,6 +31,9 @@ public class BoardScorer {
                 countCornerStones(board, opponent) * weights[5] +
                 countThreatenedStones(board, player) * weights[6] +
                 countThreatenedStones(board, opponent) * weights[7]);
+        System.out.printf("**************** score for player %s is %d \n%s\n", player, result, board);
+        System.out.printf("&&&&&&&&&&&&&&&&\n");
+        return result;
     }
 
     public int countStones(ReversiBoard board, Player player) {

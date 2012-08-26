@@ -19,8 +19,12 @@ public class ReversiBoardImpl implements ReversiBoard {
     private final Player[][] board;
 
     public ReversiBoardImpl(Player[][] board) {
-        this.board = board.clone();
         this.size = (short)board.length;
+        this.board = new Player[size][];
+        for (int i=0; i < size; i++) {
+            this.board[i] = board[i].clone();
+        }
+
     }
 
     public ReversiBoardImpl(int size) {
