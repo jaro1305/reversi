@@ -86,8 +86,7 @@ public class ReversiBoardImpl implements ReversiBoard {
             }
             builder.append("\n");
         }
-
-
         return builder.toString();
     }
+
 }
