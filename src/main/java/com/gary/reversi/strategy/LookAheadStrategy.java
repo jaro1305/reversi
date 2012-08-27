@@ -9,19 +9,18 @@ import com.rd.reversi.client.ReversiClientStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Alutek
- * Date: 26/08/12
- * Time: 22:42
- * To change this template use File | Settings | File Templates.
- */
 public class LookAheadStrategy implements ReversiClientStrategy {
 
     private ReversiScorer reversiScorer = new ReversiScorer();
     private ReversiBoardImpl board;
     private Player player;
     private int lookAheadLevel = 2;
+
+
+    int boardsScored = 0;
+    long totalTime = 0;
+    long maxTime = 0;
+
 
     public LookAheadStrategy() {
     }
@@ -51,13 +50,14 @@ public class LookAheadStrategy implements ReversiClientStrategy {
         this.player = player;
     }
 
-    @Override
     public Position getNextMove() {
+        long start = System.currentTimeMillis();
         MoveValuation moveValuation = lookAhead(board, player, lookAheadLevel, new ArrayList<Move>());
         if (moveValuation.two.isEmpty()) {
             throw new RuntimeException("this should not happen");
         }
         Move move = moveValuation.two.get(0);
+        totalTime += (System.currentTimeMillis() - start);
         return new Position(move.x, move.y);
     }
 
@@ -69,8 +69,7 @@ public class LookAheadStrategy implements ReversiClientStrategy {
         this.board = new ReversiBoardImpl(reversiBoard);
     }
 
-    @Override
-    public byte[] onGameEnded(ReversiBoard reversiBoard, Player player) {
+    public byte[] onGameEnded(ReversiBoard reversiBoard, Player winner) {
         return new byte[0];
     }
 

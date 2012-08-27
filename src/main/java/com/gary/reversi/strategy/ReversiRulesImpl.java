@@ -10,13 +10,6 @@ import java.util.List;
 
 import static com.gary.reversi.strategy.Utils.getPiece;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Alutek
- * Date: 21/08/12
- * Time: 22:30
- * To change this template use File | Settings | File Templates.
- */
 public class ReversiRulesImpl {
 
     public static void applyMove(ReversiBoardImpl board, Player player, int x, int y) {

@@ -9,13 +9,6 @@ import com.rd.reversi.client.ReversiClientStrategy;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Alutek
- * Date: 27/08/12
- * Time: 07:37
- * To change this template use File | Settings | File Templates.
- */
 public class RandomStrategy implements ReversiClientStrategy {
 
     ReversiBoard board;

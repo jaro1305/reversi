@@ -8,31 +8,23 @@ import com.rd.reversi.client.ReversiClientStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Alutek
- * Date: 27/08/12
- * Time: 00:40
- * To change this template use File | Settings | File Templates.
- */
 public class Trainer {
 
     private final Logger LOG = LoggerFactory.getLogger(Trainer.class);
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
-        for (int i=0; i < 1000; i++) {
+        for (int i=0; i < 10; i++) {
             LookAheadStrategy strategyOne = new LookAheadStrategy(3);
             LookAheadStrategy strategyTwo = new LookAheadStrategy(2);
             new Trainer().play(strategyOne, strategyTwo);
-            System.out.println("evaluations " + strategyOne.getReversiScorer().getTotalEvaluations() + "" +
-                    "/" + strategyTwo.getReversiScorer().getTotalEvaluations());
+
         }
         System.out.println("time seconds " + (int)((System.currentTimeMillis() - start)/1000F));
     }
 
     public Player play(ReversiClientStrategy strategyOne, ReversiClientStrategy strategyTwo) {
-        ReversiBoardImpl board = new ReversiBoardImpl(8);
+        ReversiBoardImpl board = new ReversiBoardImpl(11);
 
         ReversiClientStrategy[] strategies = new ReversiClientStrategy[]{
             strategyOne, strategyTwo

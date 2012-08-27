@@ -2,13 +2,6 @@ package com.gary.reversi.strategy;
 
 import com.rd.game.common.Player;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Alutek
- * Date: 26/08/12
- * Time: 23:38
- * To change this template use File | Settings | File Templates.
- */
 public class Move {
     short x;
     short y;

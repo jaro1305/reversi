@@ -5,18 +5,9 @@ import com.rd.reversi.client.ReversiBoard;
 
 import static com.gary.reversi.strategy.Utils.getPiece;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Alutek
- * Date: 26/08/12
- * Time: 21:45
- * To change this template use File | Settings | File Templates.
- */
 public class ReversiScorer {
 //    float[] weights = new float[]{1, -1, 1, -1, 1, -1, 1, -1};
     float[] weights = new float[]{2, -2, 6, -6, 10, -10, 1, -1};
-
-    int totalEvaluations;
 
     public void initGreedyWeights() {
         float[] weights = new float[]{1, 0, 0, 0, 0, 0, 0, 0};
@@ -43,7 +34,6 @@ public class ReversiScorer {
                 countThreatenedStones(board, player) * weights[6] +
                 countThreatenedStones(board, opponent) * weights[7]);
         }
-        totalEvaluations++;
         return result;
     }
 
@@ -134,7 +124,5 @@ public class ReversiScorer {
             return player;
     }
 
-    public int getTotalEvaluations() {
-        return totalEvaluations;
-    }
+
 }

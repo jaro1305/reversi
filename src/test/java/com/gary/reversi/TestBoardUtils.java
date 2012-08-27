@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class TestBoardUtils {
 
-    @Ignore
+    @Test
     public void testValidMoves() throws Exception {
         String boardStr =
             "- O - - - - O -\n" +

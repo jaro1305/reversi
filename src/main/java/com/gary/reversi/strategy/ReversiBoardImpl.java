@@ -4,13 +4,6 @@ import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;
 import com.rd.reversi.client.ReversiBoard;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Alutek
- * Date: 20/08/12
- * Time: 22:17
- * To change this template use File | Settings | File Templates.
- */
 public class ReversiBoardImpl implements ReversiBoard {
 
     private final short size;

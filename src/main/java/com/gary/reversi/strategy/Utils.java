@@ -4,13 +4,6 @@ import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;
 import com.rd.reversi.client.ReversiBoard;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Alutek
- * Date: 26/08/12
- * Time: 22:10
- * To change this template use File | Settings | File Templates.
- */
 public class Utils {
 
     public static Player getOpponent(Player player) {
