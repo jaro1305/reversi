@@ -1,4 +1,4 @@
-package com.gary.reversi.engine;
+package com.gary.reversi.strategy;
 
 import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;
@@ -14,11 +14,18 @@ import com.rd.reversi.client.ReversiClientStrategy;
  */
 public class Testbed {
 
+//    private final Logger LOG = LoggerFac
+
     public static void main(String[] args) {
+        ReversiClientStrategy strategyOne = new LookAheadStrategy(4);
+        ReversiClientStrategy strategyTwo = new LookAheadStrategy(0);
+        new Testbed().play(strategyOne, strategyTwo);
+    }
+
+    public Player play(ReversiClientStrategy strategyOne, ReversiClientStrategy strategyTwo) {
         ReversiRules rules = new ReversiRulesImpl();
         ReversiBoardImpl board = new ReversiBoardImpl(8);
-        ReversiClientStrategy strategyOne = new LookAheadStrategy(5);
-        ReversiClientStrategy strategyTwo = new RandomStrategy();
+
         ReversiClientStrategy[] strategies = new ReversiClientStrategy[]{
             strategyOne, strategyTwo
         };
@@ -55,7 +62,11 @@ public class Testbed {
                 ReversiBoardUtils.getPieceCount(board, Player.PLAYER_ONE),
                 ReversiBoardUtils.getPieceCount(board, Player.PLAYER_TWO));
         System.out.println(board);
-
+        if (ReversiBoardUtils.getPieceCount(board, Player.PLAYER_ONE) > ReversiBoardUtils.getPieceCount(board, Player.PLAYER_TWO)) {
+            return Player.PLAYER_ONE;
+        } else {
+            return Player.PLAYER_TWO;
+        }
 
     }
 

@@ -1,4 +1,4 @@
-package com.gary.reversi.engine;
+package com.gary.reversi.strategy;
 
 import com.rd.game.common.Player;
 

@@ -1,10 +1,8 @@
-package com.gary.reversi.engine;
+package com.gary.reversi.strategy;
 
 import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;
 import com.rd.reversi.client.ReversiBoard;
-
-import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.

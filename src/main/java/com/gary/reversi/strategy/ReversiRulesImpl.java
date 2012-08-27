@@ -1,9 +1,9 @@
-package com.gary.reversi.engine;
+package com.gary.reversi.strategy;
 
 import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;
 
-import static com.gary.reversi.engine.Utils.getPiece;
+import static com.gary.reversi.strategy.Utils.getPiece;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package com.gary.reversi.engine;
+package com.gary.reversi.strategy;
 
 import com.rd.game.common.GameLogger;
 import com.rd.game.common.Player;
@@ -23,7 +23,7 @@ public class LookAheadStrategy implements ReversiClientStrategy {
     private final ReversiRules rules = new ReversiRulesImpl();
     private ReversiBoardImpl board;
     private Player player;
-    private int lookAheadLevel = 3;
+    private int lookAheadLevel = 2;
 
     public LookAheadStrategy() {
     }
