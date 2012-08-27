@@ -48,9 +48,8 @@ public class LookAheadStrategy implements ReversiClientStrategy {
     @Override
     public Position getNextMove() {
         MoveValuation moveValuation = lookAhead(board, player, lookAheadLevel, new ArrayList<Move>());
-
         if (moveValuation.two.isEmpty()) {
-            System.out.println(board);
+            throw new RuntimeException("this should not happen");
         }
         Move move = moveValuation.two.get(0);
         return new Position(move.x, move.y);

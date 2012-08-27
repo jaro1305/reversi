@@ -1,4 +1,4 @@
-package com.gary.reversi.strategy;
+package com.gary.reversi.support;
 
 import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;

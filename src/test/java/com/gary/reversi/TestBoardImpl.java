@@ -1,8 +1,8 @@
 package com.gary.reversi;
 
-import com.gary.reversi.engine.ReversiBoardImpl;
-import com.gary.reversi.engine.ReversiRules;
-import com.gary.reversi.engine.ReversiRulesImpl;
+import com.gary.reversi.strategy.ReversiBoardImpl;
+import com.gary.reversi.strategy.ReversiRules;
+import com.gary.reversi.strategy.ReversiRulesImpl;
 import com.rd.game.common.Player;
 import junit.framework.Assert;
 import org.junit.Test;

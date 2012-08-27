@@ -1,7 +1,7 @@
 package com.gary.reversi;
 
-import com.gary.reversi.engine.LookAheadStrategy;
-import com.gary.reversi.engine.ReversiBoardImpl;
+import com.gary.reversi.strategy.LookAheadStrategy;
+import com.gary.reversi.strategy.ReversiBoardImpl;
 import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;
 import junit.framework.Assert;

@@ -1,7 +1,7 @@
 package com.gary.reversi;
 
-import com.gary.reversi.engine.BoardScorer;
-import com.gary.reversi.engine.ReversiBoardImpl;
+import com.gary.reversi.strategy.BoardScorer;
+import com.gary.reversi.strategy.ReversiBoardImpl;
 import com.rd.game.common.Player;
 import org.junit.Assert;
 import org.junit.Test;

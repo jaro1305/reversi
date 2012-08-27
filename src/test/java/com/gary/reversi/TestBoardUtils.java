@@ -1,12 +1,11 @@
 package com.gary.reversi;
 
-import com.gary.reversi.engine.ReversiBoardImpl;
+import com.gary.reversi.strategy.ReversiBoardImpl;
 import com.rd.game.common.Player;
 import com.rd.reversi.client.ReversiBoard;
 import com.rd.reversi.client.ReversiBoardUtils;
 import junit.framework.Assert;
 import org.junit.Ignore;
-import org.junit.Test;
 
 /**
  * Created with IntelliJ IDEA.
