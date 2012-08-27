@@ -35,8 +35,8 @@ public class Testbed {
                 System.out.printf("player %s plays %d, %d\n", player, position.getX(), position.getY());
                 board = (ReversiBoardImpl)board.copy();
                 rules.applyMove(board, player, position);
-                strategies[0].onMovePlayed(board, Player.PLAYER_ONE);
-                strategies[1].onMovePlayed(board, Player.PLAYER_TWO);
+                strategyOne.onMovePlayed(board, player);
+                strategyTwo.onMovePlayed(board, player);
             } else {
                 System.out.printf("player %s doesn't have a valid move\n", player);
                 if (!ReversiBoardUtils.getValidMoves(board, Utils.getOpponent(player)).isEmpty() ||

@@ -13,7 +13,6 @@ import com.rd.reversi.client.ReversiBoard;
  */
 public interface ReversiRules {
 
-
     void applyMove(ReversiBoardImpl board, Player player, int x, int y);
     void applyMove(ReversiBoardImpl board, Player player, Position position);
 

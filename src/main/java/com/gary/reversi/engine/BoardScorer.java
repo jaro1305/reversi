@@ -1,7 +1,6 @@
 package com.gary.reversi.engine;
 
 import com.rd.game.common.Player;
-import com.rd.reversi.client.Position;
 import com.rd.reversi.client.ReversiBoard;
 
 import static com.gary.reversi.engine.Utils.getPiece;
