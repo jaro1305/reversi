@@ -25,11 +25,10 @@ public class Trainer {
             LookAheadStrategy strategyOne = new LookAheadStrategy(3);
             LookAheadStrategy strategyTwo = new LookAheadStrategy(2);
             new Trainer().play(strategyOne, strategyTwo);
-            System.out.println("evaluations " + strategyOne.getBoardScorer().getTotalEvaluations() + "" +
-                    "/" + strategyTwo.getBoardScorer().getTotalEvaluations());
+            System.out.println("evaluations " + strategyOne.getReversiScorer().getTotalEvaluations() + "" +
+                    "/" + strategyTwo.getReversiScorer().getTotalEvaluations());
         }
         System.out.println("time seconds " + (int)((System.currentTimeMillis() - start)/1000F));
-        // 21000
     }
 
     public Player play(ReversiClientStrategy strategyOne, ReversiClientStrategy strategyTwo) {

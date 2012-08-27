@@ -12,7 +12,7 @@ import static com.gary.reversi.strategy.Utils.getPiece;
  * Time: 21:45
  * To change this template use File | Settings | File Templates.
  */
-public class BoardScorer {
+public class ReversiScorer {
 //    float[] weights = new float[]{1, -1, 1, -1, 1, -1, 1, -1};
     float[] weights = new float[]{2, -2, 6, -6, 10, -10, 1, -1};
 
@@ -102,33 +102,27 @@ public class BoardScorer {
     }
 
     public boolean isThreatened(ReversiBoard board, int x, int y) {
-//        System.out.printf("checking if threatened [%d x %d]\n", x, y);
         Player player = getPiece(board, x, y);
         if (getPiece(board, x, y) == player &&
                 (isThreatened(board, x, y, 0, 1) ||
                 isThreatened(board, x, y, 1, 1) ||
                 isThreatened(board, x, y, 1, 0))) {
-//            System.out.printf("[%d, %d] threatened\n", x, y);
             return true;
         }
-//        System.out.printf("[%d, %d] not threatened\n", x, y);
         return false;
     }
 
     public boolean isThreatened(ReversiBoard board, int x, int y, int xOffset, int yOffset) {
-//        System.out.printf("checking if threatened [%d, %d] offset [%d, %d]\n", x, y, xOffset, yOffset);
         Player player = getPiece(board, x, y);
         Player opponent = Utils.getOpponent(player);
-        Player positiveEnd = getStoneAtLineEnd(board, x, y, xOffset, yOffset, player);
-        Player negativeEnd = getStoneAtLineEnd(board, x, y, -xOffset, -yOffset, player);
-
-        //System.out.printf("found ends [%s, %s]\n", positiveEnd, negativeEnd);
+        Player positiveEnd = getStoneAtLinesEnd(board, x, y, xOffset, yOffset, player);
+        Player negativeEnd = getStoneAtLinesEnd(board, x, y, -xOffset, -yOffset, player);
 
         return ((positiveEnd == null && negativeEnd == opponent) ||
                 (positiveEnd == opponent && negativeEnd == null));
     }
 
-    private Player getStoneAtLineEnd(ReversiBoard board, int x, int y, int xOffset, int yOffset, Player player) {
+    private Player getStoneAtLinesEnd(ReversiBoard board, int x, int y, int xOffset, int yOffset, Player player) {
         while (x >= 0 && x < board.getSize() && y >= 0 && y < board.getSize() &&
                 getPiece(board, x, y) == player) {
             x += xOffset;

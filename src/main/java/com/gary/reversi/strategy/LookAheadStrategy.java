@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class LookAheadStrategy implements ReversiClientStrategy {
 
-    private BoardScorer boardScorer = new BoardScorer();
+    private ReversiScorer reversiScorer = new ReversiScorer();
     private ReversiBoardImpl board;
     private Player player;
     private int lookAheadLevel = 2;
@@ -26,12 +26,12 @@ public class LookAheadStrategy implements ReversiClientStrategy {
     public LookAheadStrategy() {
     }
 
-    public void setBoardScorer(BoardScorer scorer) {
-        this.boardScorer = scorer;
+    public void setReversiScorer(ReversiScorer scorer) {
+        this.reversiScorer = scorer;
     }
 
-    public BoardScorer getBoardScorer() {
-        return boardScorer;
+    public ReversiScorer getReversiScorer() {
+        return reversiScorer;
     }
 
     public LookAheadStrategy(int lookAheadLevel) {
@@ -83,7 +83,7 @@ public class LookAheadStrategy implements ReversiClientStrategy {
     private MoveValuation lookAhead(ReversiBoard board, Player player, int level, List<Move> history) {
         List<Position> possibleMoves = ReversiRulesImpl.getValidMoves(board, player);
         if (level < 0 || possibleMoves.isEmpty()) {
-            return new MoveValuation(boardScorer.score(board, player), history);
+            return new MoveValuation(reversiScorer.score(board, player), history);
         }
 
         MoveValuation bestScore = new MoveValuation(Integer.MIN_VALUE, new ArrayList<Move>());
