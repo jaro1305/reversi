@@ -1,7 +1,6 @@
 package com.gary.reversi;
 
 import com.gary.reversi.strategy.ReversiBoardImpl;
-import com.gary.reversi.strategy.ReversiRules;
 import com.gary.reversi.strategy.ReversiRulesImpl;
 import com.rd.game.common.Player;
 import junit.framework.Assert;
@@ -24,9 +23,8 @@ public class TestBoardImpl {
 
     @Test
     public void testBasicMove() throws Exception {
-        ReversiRules rules = new ReversiRulesImpl();
         ReversiBoardImpl board = new ReversiBoardImpl(8);
-        rules.applyMove(board, Player.PLAYER_ONE, 4, 2);
+        ReversiRulesImpl.applyMove(board, Player.PLAYER_ONE, 4, 2);
         System.out.println(board);
     }
 
@@ -41,9 +39,8 @@ public class TestBoardImpl {
                 "- - X - O - - -\n" +
                 "- - - - - X - -\n" +
                 "- - - - - - - -\n";
-        ReversiRules rules = new ReversiRulesImpl();
         ReversiBoardImpl board = new ReversiBoardImpl(state);
-        rules.applyMove(board, Player.PLAYER_TWO, 2, 3);
+        ReversiRulesImpl.applyMove(board, Player.PLAYER_TWO, 2, 3);
         String expected =
                 "- - X - - O - -\n" +
                 "- - X - O - - -\n" +

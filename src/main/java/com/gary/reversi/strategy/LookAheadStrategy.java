@@ -4,7 +4,6 @@ import com.rd.game.common.GameLogger;
 import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;
 import com.rd.reversi.client.ReversiBoard;
-import com.rd.reversi.client.ReversiBoardUtils;
 import com.rd.reversi.client.ReversiClientStrategy;
 
 import java.util.ArrayList;
@@ -19,13 +18,20 @@ import java.util.List;
  */
 public class LookAheadStrategy implements ReversiClientStrategy {
 
-    private final BoardScorer scorer = new BoardScorer();
-    private final ReversiRules rules = new ReversiRulesImpl();
+    private BoardScorer boardScorer = new BoardScorer();
     private ReversiBoardImpl board;
     private Player player;
     private int lookAheadLevel = 2;
 
     public LookAheadStrategy() {
+    }
+
+    public void setBoardScorer(BoardScorer scorer) {
+        this.boardScorer = scorer;
+    }
+
+    public BoardScorer getBoardScorer() {
+        return boardScorer;
     }
 
     public LookAheadStrategy(int lookAheadLevel) {
@@ -75,9 +81,9 @@ public class LookAheadStrategy implements ReversiClientStrategy {
     }
 
     private MoveValuation lookAhead(ReversiBoard board, Player player, int level, List<Move> history) {
-        List<Position> possibleMoves = ReversiBoardUtils.getValidMoves(board, player);
+        List<Position> possibleMoves = ReversiRulesImpl.getValidMoves(board, player);
         if (level < 0 || possibleMoves.isEmpty()) {
-            return new MoveValuation(scorer.score(board, player), history);
+            return new MoveValuation(boardScorer.score(board, player), history);
         }
 
         MoveValuation bestScore = new MoveValuation(Integer.MIN_VALUE, new ArrayList<Move>());
@@ -86,7 +92,7 @@ public class LookAheadStrategy implements ReversiClientStrategy {
             ReversiBoardImpl boardCopy = (ReversiBoardImpl)board.copy();
             List<Move> historyCopy = new ArrayList<Move>(history);
             historyCopy.add(new Move(position.getX(), position.getY(), player));
-            rules.applyMove(boardCopy, player, position);
+            ReversiRulesImpl.applyMove(boardCopy, player, position);
 
             MoveValuation moveScore = lookAhead(boardCopy, Utils.getOpponent(player), level - 1, historyCopy);
             moveScore.one *= -1;

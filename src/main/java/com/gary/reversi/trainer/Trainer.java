@@ -1,4 +1,4 @@
-package com.gary.reversi.support;
+package com.gary.reversi.trainer;
 
 import com.gary.reversi.strategy.*;
 import com.rd.game.common.Player;
@@ -15,19 +15,24 @@ import org.slf4j.LoggerFactory;
  * Time: 00:40
  * To change this template use File | Settings | File Templates.
  */
-public class Testbed {
+public class Trainer {
 
-    private final Logger LOG = LoggerFactory.getLogger(Testbed.class);
+    private final Logger LOG = LoggerFactory.getLogger(Trainer.class);
 
     public static void main(String[] args) {
-        LookAheadStrategy strategyOne = new LookAheadStrategy(4);
-        LookAheadStrategy strategyTwo = new LookAheadStrategy(0);
-
-        new Testbed().play(strategyOne, strategyTwo);
+        long start = System.currentTimeMillis();
+        for (int i=0; i < 1000; i++) {
+            LookAheadStrategy strategyOne = new LookAheadStrategy(3);
+            LookAheadStrategy strategyTwo = new LookAheadStrategy(2);
+            new Trainer().play(strategyOne, strategyTwo);
+            System.out.println("evaluations " + strategyOne.getBoardScorer().getTotalEvaluations() + "" +
+                    "/" + strategyTwo.getBoardScorer().getTotalEvaluations());
+        }
+        System.out.println("time seconds " + (int)((System.currentTimeMillis() - start)/1000F));
+        // 21000
     }
 
     public Player play(ReversiClientStrategy strategyOne, ReversiClientStrategy strategyTwo) {
-        ReversiRules rules = new ReversiRulesImpl();
         ReversiBoardImpl board = new ReversiBoardImpl(8);
 
         ReversiClientStrategy[] strategies = new ReversiClientStrategy[]{
@@ -45,7 +50,7 @@ public class Testbed {
                 Position position = strategies[turn % 2].getNextMove();
                 LOG.info("player {} plays {}, {}", new Object[]{player, position.getX(), position.getY()});
                 board = (ReversiBoardImpl)board.copy();
-                rules.applyMove(board, player, position);
+                ReversiRulesImpl.applyMove(board, player, position);
                 strategyOne.onMovePlayed(board, player);
                 strategyTwo.onMovePlayed(board, player);
             } else {

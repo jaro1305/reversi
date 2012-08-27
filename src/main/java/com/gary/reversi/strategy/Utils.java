@@ -17,6 +17,10 @@ public class Utils {
         return player == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
     }
 
+    public static Player getPiece(ReversiBoardImpl board, short x, short y) {
+        return board.getPiece(x, y);
+    }
+
     public static Player getPiece(ReversiBoard board, short x, short y) {
         return board.getPiece(new Position(x, y));
     }

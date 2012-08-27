@@ -1,9 +1,9 @@
-package com.gary.reversi.support;
+package com.gary.reversi.trainer;
 
+import com.gary.reversi.strategy.ReversiRulesImpl;
 import com.rd.game.common.Player;
 import com.rd.reversi.client.Position;
 import com.rd.reversi.client.ReversiBoard;
-import com.rd.reversi.client.ReversiBoardUtils;
 import com.rd.reversi.client.ReversiClientStrategy;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class RandomStrategy implements ReversiClientStrategy {
 
     @Override
     public Position getNextMove() {
-        List<Position> validMoves = ReversiBoardUtils.getValidMoves(board, player);
+        List<Position> validMoves = ReversiRulesImpl.getValidMoves(board, player);
         return validMoves.get((int)Math.floor(random.nextDouble() * validMoves.size()));
     }
 

@@ -1,11 +1,16 @@
 package com.gary.reversi;
 
 import com.gary.reversi.strategy.ReversiBoardImpl;
+import com.gary.reversi.strategy.ReversiRulesImpl;
 import com.rd.game.common.Player;
+import com.rd.reversi.client.Position;
 import com.rd.reversi.client.ReversiBoard;
 import com.rd.reversi.client.ReversiBoardUtils;
 import junit.framework.Assert;
 import org.junit.Ignore;
+import org.junit.Test;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,5 +34,24 @@ public class TestBoardUtils {
             "- O - - - - - -\n";
         ReversiBoard board = new ReversiBoardImpl(boardStr);
         Assert.assertEquals(0, ReversiBoardUtils.getValidMoves(board, Player.PLAYER_ONE));
+    }
+
+    @Test
+    public void testName() throws Exception {
+        String boardStr = "- - - - - - - -\n" +
+                "- - - - - - - -\n" +
+                "- - X - O - - -\n" +
+                "- - X X O - - -\n" +
+                "- - O O X - - -\n" +
+                "- - - O - X - -\n" +
+                "- - - - - - - -\n" +
+                "- - - - - - - -\n";
+
+        ReversiBoard board = new ReversiBoardImpl(boardStr);
+
+        List<Position> validMoves = ReversiRulesImpl.getValidMoves(board, Player.PLAYER_ONE);
+        System.out.println(validMoves);
+        Assert.assertEquals(0, validMoves);
+
     }
 }
