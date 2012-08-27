@@ -20,7 +20,7 @@ public class RandomStrategy implements ReversiClientStrategy {
 
     ReversiBoard board;
     Player player;
-    Random random = new Random(333);
+    Random random = new Random(338);
 
     @Override
     public void onGameInitialised(ReversiBoard reversiBoard, Player player, String s, int i, byte[] bytes) {
@@ -30,7 +30,6 @@ public class RandomStrategy implements ReversiClientStrategy {
 
     @Override
     public Position getNextMove() {
-        System.out.println("[[[ " + board + " ]]]");
         List<Position> validMoves = ReversiBoardUtils.getValidMoves(board, player);
         return validMoves.get((int)Math.floor(random.nextDouble() * validMoves.size()));
     }

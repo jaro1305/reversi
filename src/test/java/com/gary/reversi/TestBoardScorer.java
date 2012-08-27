@@ -64,7 +64,7 @@ public class TestBoardScorer {
         board.setPiece(7, 3, Player.PLAYER_TWO);
         board.setPiece(7, 7, Player.PLAYER_TWO);
         board.setPiece(7, 0, Player.PLAYER_TWO);
-        Assert.assertEquals(-8, boardScorer.score(board, Player.PLAYER_ONE));
+        Assert.assertEquals(-44, boardScorer.score(board, Player.PLAYER_ONE));
 
     }
 }

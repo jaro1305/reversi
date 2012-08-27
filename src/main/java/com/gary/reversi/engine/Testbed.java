@@ -16,8 +16,8 @@ public class Testbed {
 
     public static void main(String[] args) {
         ReversiRules rules = new ReversiRulesImpl();
-        ReversiBoardImpl board = new ReversiBoardImpl(11);
-        ReversiClientStrategy strategyOne = new LookAheadStrategy(3);
+        ReversiBoardImpl board = new ReversiBoardImpl(8);
+        ReversiClientStrategy strategyOne = new LookAheadStrategy(5);
         ReversiClientStrategy strategyTwo = new RandomStrategy();
         ReversiClientStrategy[] strategies = new ReversiClientStrategy[]{
             strategyOne, strategyTwo

@@ -4,6 +4,8 @@ import com.gary.reversi.engine.ReversiBoardImpl;
 import com.rd.game.common.Player;
 import com.rd.reversi.client.ReversiBoard;
 import com.rd.reversi.client.ReversiBoardUtils;
+import junit.framework.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -15,7 +17,7 @@ import org.junit.Test;
  */
 public class TestBoardUtils {
 
-    @Test
+    @Ignore
     public void testValidMoves() throws Exception {
         String boardStr =
             "- O - - - - O -\n" +
@@ -27,6 +29,6 @@ public class TestBoardUtils {
             "- - - - - - - -\n" +
             "- O - - - - - -\n";
         ReversiBoard board = new ReversiBoardImpl(boardStr);
-        System.out.println(ReversiBoardUtils.getValidMoves(board, Player.PLAYER_ONE));
+        Assert.assertEquals(0, ReversiBoardUtils.getValidMoves(board, Player.PLAYER_ONE));
     }
 }
