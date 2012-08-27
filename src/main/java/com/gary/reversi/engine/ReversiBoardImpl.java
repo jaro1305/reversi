@@ -27,6 +27,42 @@ public class ReversiBoardImpl implements ReversiBoard {
 
     }
 
+    public ReversiBoardImpl(String board) {
+        String[] rows = board.split("\n");
+        size = (short)rows.length;
+        Player[][] transposed = new Player[size][size];
+        for (int r = 0; r < size; r++) {
+            transposed[r] = readRow(rows[r]);
+            if (transposed[r].length != size) {
+                throw new RuntimeException("invalid row size");
+            }
+        }
+        this.board = new Player[size][size];
+        for (int i=0; i < size; i++) {
+            for (int j=0; j < size; j++) {
+                this.board[i][j] = transposed[j][i];
+            }
+        }
+
+    }
+
+    private Player[] readRow(String rowString) {
+        String[] elements = rowString.split(" ");
+        Player[] row = new Player[elements.length];
+        for (int i=0; i < elements.length; i++) {
+            if (Player.PLAYER_ONE.toString().equalsIgnoreCase(elements[i])) {
+                row[i] = Player.PLAYER_ONE;
+            } else if (Player.PLAYER_TWO.toString().equalsIgnoreCase(elements[i])) {
+                row[i] = Player.PLAYER_TWO;
+            } else if ("-".equals(elements[i])) {
+                row[i] = null;
+            } else {
+                throw new RuntimeException(String.format("invalid element [%s]", elements[i]));
+            }
+        }
+        return row;
+    }
+
     public ReversiBoardImpl(int size) {
         this((short)size);
     }
@@ -35,6 +71,16 @@ public class ReversiBoardImpl implements ReversiBoard {
         this.size = size;
         this.board = new Player[size][size];
         initStart();
+    }
+
+    public ReversiBoardImpl(ReversiBoard reversiBoard) {
+        this.size = reversiBoard.getSize();
+        this.board = new Player[size][size];
+        for (short i=0; i < size; i++) {
+            for (short j=0; j < size; j++) {
+                this.board[i][j] = reversiBoard.getPiece(new Position(i, j));
+            }
+        }
     }
 
     private void initStart() {

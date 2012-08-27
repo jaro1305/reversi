@@ -14,25 +14,36 @@ import static com.gary.reversi.engine.Utils.getPiece;
  * To change this template use File | Settings | File Templates.
  */
 public class BoardScorer {
-    float[] weights = new float[]{1, -1, 1, -1, 1, -1, 1, -1};
+//    float[] weights = new float[]{1, -1, 1, -1, 1, -1, 1, -1};
+    float[] weights = new float[]{2, -2, 6, -6, 10, -10, 1, -1};
 
     public void initGreedyWeights() {
-        weights = new float[]{1, 0, 0, 0, 0, 0, 0, 0};
+        float[] weights = new float[]{1, 0, 0, 0, 0, 0, 0, 0};
     }
 
     public int score(ReversiBoard board, Player player) {
         Player opponent = Utils.getOpponent(player);
 
-        int result = (int)(countStones(board, player) * weights[0] +
-                countStones(board, opponent) * weights[1] +
+        int playerStones = countStones(board, player);
+        int opponentStones = countStones(board, opponent);
+        int result;
+        if (playerStones == 0) {
+            result = Integer.MIN_VALUE + 1;
+        } else if (opponentStones == 0) {
+            result = Integer.MAX_VALUE - 1;
+        } else {
+            result = (int)(
+                playerStones * weights[0] +
+                opponentStones * weights[1] +
                 countEdgeStones(board, player) * weights[2] +
                 countEdgeStones(board, opponent) * weights[3] +
                 countCornerStones(board, player) * weights[4] +
                 countCornerStones(board, opponent) * weights[5] +
                 countThreatenedStones(board, player) * weights[6] +
                 countThreatenedStones(board, opponent) * weights[7]);
-        System.out.printf("**************** score for player %s is %d \n%s\n", player, result, board);
-        System.out.printf("&&&&&&&&&&&&&&&&\n");
+        }
+//        System.out.printf("**************** score for player %s is %d \n%s\n", player, result, board);
+//        System.out.printf("&&&&&&&&&&&&&&&&\n");
         return result;
     }
 

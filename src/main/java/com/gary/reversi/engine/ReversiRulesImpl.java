@@ -38,11 +38,12 @@ public class ReversiRulesImpl implements ReversiRules {
     private void flip(ReversiBoardImpl board, Position start, Player player, int xOffset, int yOffset) {
         int x = start.getX();
         int y = start.getY();
-        Player opponent = player == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
-
+        Player opponent = Utils.getOpponent(player);
+        int count = 0;
         do {
             x += xOffset;
             y += yOffset;
+            count++;
         } while (x >= 0 && x < board.getSize() && y >= 0 && y < board.getSize()
                 && board.getPiece(x, y) == opponent);
 
@@ -53,8 +54,7 @@ public class ReversiRulesImpl implements ReversiRules {
                 x += xOffset;
                 y += yOffset;
                 board.setPiece(x, y, player);
-            } while (x >= 0 && x < board.getSize() && y >= 0 && y < board.getSize()
-                    && board.getPiece(x, y) == opponent);
+            } while (--count > 0);
         }
         board.setPiece(start.getX(), start.getY(), player);
     }

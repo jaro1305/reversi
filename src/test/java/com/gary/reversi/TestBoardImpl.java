@@ -4,6 +4,7 @@ import com.gary.reversi.engine.ReversiBoardImpl;
 import com.gary.reversi.engine.ReversiRules;
 import com.gary.reversi.engine.ReversiRulesImpl;
 import com.rd.game.common.Player;
+import junit.framework.Assert;
 import org.junit.Test;
 
 /**
@@ -27,5 +28,31 @@ public class TestBoardImpl {
         ReversiBoardImpl board = new ReversiBoardImpl(8);
         rules.applyMove(board, Player.PLAYER_ONE, 4, 2);
         System.out.println(board);
+    }
+
+    @Test
+    public void testDoubleCaptureMove() throws Exception {
+        String state =
+                "- - X - - O - -\n" +
+                "- - X - O - - -\n" +
+                "- - X O - - - -\n" +
+                "- - - O O O O X\n" +
+                "- - O O O - - -\n" +
+                "- - X - O - - -\n" +
+                "- - - - - X - -\n" +
+                "- - - - - - - -\n";
+        ReversiRules rules = new ReversiRulesImpl();
+        ReversiBoardImpl board = new ReversiBoardImpl(state);
+        rules.applyMove(board, Player.PLAYER_TWO, 2, 3);
+        String expected =
+                "- - X - - O - -\n" +
+                "- - X - O - - -\n" +
+                "- - X O - - - -\n" +
+                "- - X X X X X X\n" +
+                "- - X X O - - -\n" +
+                "- - X - X - - -\n" +
+                "- - - - - X - -\n" +
+                "- - - - - - - -\n";
+        Assert.assertEquals(expected, board.toString());
     }
 }
