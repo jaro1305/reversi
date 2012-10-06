@@ -33,7 +33,7 @@ public class TestBoardUtils {
             "- - - - - - - -\n" +
             "- O - - - - - -\n";
         ReversiBoard board = new ReversiBoardImpl(boardStr);
-        Assert.assertEquals(0, ReversiBoardUtils.getValidMoves(board, Player.PLAYER_ONE));
+        Assert.assertEquals(0, ReversiBoardUtils.getValidMoves(board, Player.PLAYER_ONE).size());
     }
 
     @Test
