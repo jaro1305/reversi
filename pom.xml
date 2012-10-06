@@ -11,12 +11,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>reversi</groupId>
+            <groupId>com.geeky-ai</groupId>
             <artifactId>reversi-client</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>reversi</groupId>
+            <groupId>com.geeky-ai</groupId>
             <artifactId>game-common</artifactId>
             <version>1.0</version>
         </dependency>

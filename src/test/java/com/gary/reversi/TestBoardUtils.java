@@ -7,7 +7,6 @@ import com.rd.reversi.client.Position;
 import com.rd.reversi.client.ReversiBoard;
 import com.rd.reversi.client.ReversiBoardUtils;
 import junit.framework.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class TestBoardUtils {
         Assert.assertEquals(0, ReversiBoardUtils.getValidMoves(board, Player.PLAYER_ONE));
     }
 
-    @Ignore("broken - Position does not implement hashcode")
+    @Test
     public void testName() throws Exception {
         String boardStr = "- - - - - - - -\n" +
                 "- - - - - - - -\n" +
@@ -60,7 +59,15 @@ public class TestBoardUtils {
         list.add(new Position((short)4, (short)5));
         list.add(new Position((short)5, (short)3));
         list.add(new Position((short)5, (short)4));
-        Assert.assertEquals(list, validMoves);
 
+        assertPositionList(list, validMoves);
+    }
+
+    private void assertPositionList(List<Position> expected, List<Position> actual) {
+        Assert.assertEquals(expected.size(), actual.size());
+        for (int i=0; i < expected.size(); i++) {
+            Assert.assertEquals(expected.get(i).getX(), actual.get(i).getX());
+            Assert.assertEquals(expected.get(i).getY(), actual.get(i).getY());
+        }
     }
 }
